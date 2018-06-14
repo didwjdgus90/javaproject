@@ -1,4 +1,4 @@
-package Frame;
+package MyFrame;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -45,12 +45,13 @@ public class MyFrame extends JFrame {
 		
 		JButton b1 = new JButton("추가");
 		b1.setBounds(250,0,100,50);
-		b1.addActionListener((ActionListener) new AddActionListener(table,text,text2,text3,text4));
+		b1.addActionListener((ActionListener)new AddActionListener(table,text,text2,text3,text4));
 		JButton b2 = new JButton("제거");
 		b2.setBounds(250,50,100,50);
+		b2.addActionListener((ActionListener)new RemoveActionListener(table));
 		JButton b3 = new JButton("수정");
 		b3.setBounds(250,100,100,50);
-			
+		b3.addActionListener((ActionListener)new UpdateActionListener(table,text,text2,text3,text4));	
 		add(button);
 		add(button2);
 		add(button3);
