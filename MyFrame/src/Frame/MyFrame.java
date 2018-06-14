@@ -8,21 +8,21 @@ import java.awt.*;
 public class MyFrame extends JFrame {
 	
 	public MyFrame(){
-		setSize(800,240);
+		setSize(820,240);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("MyFrame");
 		
+		JPanel panel2 = new JPanel();
 		String Cloum [] = {"이름","국어","영어","수학"};
-		String data [] = {"양정현","30","30","30"};
+		String data [][] = {{"양정현","30","30","30"}};
+		panel2.setLayout(new BorderLayout());
 		DefaultTableModel defaultTableModel = new DefaultTableModel(data,Cloum);
 		JTable table = new JTable(defaultTableModel);
-		JScroll
-		table.setBounds(370, 0, 500, 200);
+		JScrollPane scrooll = new JScrollPane(table);
+		panel2.add(scrooll,"West");
+		panel2.setBounds(350, 0, 500, 200);
+		this.setLayout(null);
 		
-		JPanel panel = new JPanel();
-		panel.setLayout(null);
-		
-
 		
 		Button button = new Button("이름");
 		button.setBounds(0,0,100,50);
@@ -49,19 +49,18 @@ public class MyFrame extends JFrame {
 		JButton b3 = new JButton("수정");
 		b3.setBounds(250,100,100,50);
 			
-		panel.add(button);
-		panel.add(button2);
-		panel.add(button3);
-		panel.add(button4);
-		panel.add(text);
-		panel.add(text2);
-		panel.add(text3);
-		panel.add(text4);
-		panel.add(b1);
-		panel.add(b2);
-		panel.add(b3);
-		panel.add(table);
-		add(panel);
+		add(button);
+		add(button2);
+		add(button3);
+		add(button4);
+		add(text);
+		add(text2);
+		add(text3);
+		add(text4);
+		add(b1);
+		add(b2);
+		add(b3);
+		add(panel2);
 		setVisible(true);
 	}
 	
