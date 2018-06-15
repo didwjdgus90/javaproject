@@ -71,6 +71,7 @@ public class MyFrame extends JFrame {
 		b2.addActionListener(new DelActionListener(table));
 		JButton b3 = new JButton("¼öÁ¤");
 		b3.setBounds(265,115,100,50);
+		b3.addActionListener(new UpdateActionListener(text,text2,text3,text4));
 		
 		panelText.add(b1);
 		panelText.add(b2);
@@ -81,6 +82,7 @@ public class MyFrame extends JFrame {
 		add(panel2);
 		add(panelText);
 		setVisible(true);
+		
 	}
 	
 }
