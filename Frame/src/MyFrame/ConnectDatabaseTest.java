@@ -1,9 +1,11 @@
 package MyFrame;
 
-public class MyFrameTest {
+public class ConnectDatabaseTest {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		MyFrame f = new MyFrame();
+		ConnectDatabase db = new ConnectDatabase();
+		db.makeConnection();
 	}
+
 }

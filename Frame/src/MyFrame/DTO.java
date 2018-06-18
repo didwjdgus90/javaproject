@@ -1,4 +1,4 @@
-package Frame;
+package MyFrame;
 
 public class DTO {
 	private String name;
