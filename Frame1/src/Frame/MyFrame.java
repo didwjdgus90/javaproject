@@ -67,7 +67,6 @@ public class MyFrame extends JFrame {
 		b2.addActionListener(new DelActionListener(table));
 		JButton b3 = new JButton("수정");
 		b3.setBounds(265, 115, 100, 50);
-		b3.addActionListener(new UpdateActionListener(text, text2, text3, text4));
 
 		panelText.add(b1);
 		panelText.add(b2);
@@ -78,102 +77,5 @@ public class MyFrame extends JFrame {
 		setVisible(true);
 
 	}
-
-}
-@Override
-
-public void actionPerformed(ActionEvent e) {
-
-  String ButtonFlag = e.getActionCommand();
-
-   
-
-  if (ButtonFlag.equals("추가")) {
-
-    try {
-
-      contentSet();
-
-      int result = scoreDAO.insertScore(scoreDTO);
-
-      if (result == 1) {
-
-        JOptionPane.showMessageDialog(this, "추가 되었습니다.");
-
-        jTableRefresh();
-
-        contentClear();
-
-      } 
-
-    } catch (Exception e2) {
-
-      JOptionPane.showMessageDialog(this, "이름을 입력하세요!");
-
-      e2.printStackTrace();
-
-      return;
-
-    }
-
-  } else if (ButtonFlag.equals("제거")) {
-
-    try {
-
-      contentSet();
-
-      int result = scoreDAO.deleteScore(scoreDTO);
-
-       
-
-      if (result == 1) {
-
-        JOptionPane.showMessageDialog(this, "제거 되었습니다.");
-
-        jTableRefresh();
-
-        contentClear();
-
-      }
-
-    } catch (Exception e2) {
-
-      JOptionPane.showMessageDialog(this, "이름을 입력하세요!");
-
-      e2.printStackTrace();
-
-    } 
-
-  } else if (ButtonFlag.equals("수정")) {
-
-    try {
-
-      contentSet();
-
-      int result = scoreDAO.updateScore(scoreDTO);
-
-       
-
-      if (result == 1) {
-
-        JOptionPane.showMessageDialog(this, "수정 되었습니다.");
-
-        jTableRefresh();
-
-        contentClear();       
-
-        jtName.setFocusable(true);
-
-      }
-
-    } catch (Exception e2) {
-
-      JOptionPane.showMessageDialog(this, "이름을 입력하세요!");
-
-      e2.printStackTrace();
-
-    }
-
-  } 
 
 }
