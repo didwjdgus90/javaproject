@@ -1,9 +1,11 @@
 package MyFrame;
 
-public class MyFrameTest {
+public  class MyFrameTest {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		MyFrame f = new MyFrame();
+		Score f = new Score();
+		
 	}
+
 }

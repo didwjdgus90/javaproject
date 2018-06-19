@@ -2,17 +2,17 @@ package MyFrame;
 
 import java.sql.Connection;
 
+
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
-
-import MyFrame.MyFrame;
+import MyFrame.Score;
 
 public class DAO {
-	private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
+	private static final String DRIVER = "com.mysql.jdbc.Driver";
 	private static final String URL = "jdbc:mysql://localhost/test?serverTimezone=UTC";
 	private static final String USER = "root";
 	private static final String PASS = "1234";
