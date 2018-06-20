@@ -63,7 +63,7 @@ public class DAO {
 		return result;
 	} // insertMember : 회원 정보를 저장하는 메소드, 성공 여부를 int형 result 를 반환한다.
 
-	public Vector getScore() {
+	public  Vector getScore() {
 		Vector data = new Vector();
 		Connection con = null;
 		Statement stmt = null;

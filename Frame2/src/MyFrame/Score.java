@@ -17,7 +17,7 @@ public class Score extends JFrame  {
 	DTO T = new DTO();
 
 	JTextField tname, tkor, teng, tmat;
-	JButton b1, b2,b3;
+	JButton b1, b2, b3;
 	JTable table;
 	Vector col;
 
@@ -36,7 +36,6 @@ public class Score extends JFrame  {
 		col.add("¼öÇÐ");
 		col.add("ÃÑÁ¡");
 		col.add("Æò±Õ");
-		
 
 		JPanel panel2 = new JPanel();
 		panel2.setLayout(new BorderLayout());
@@ -70,9 +69,10 @@ public class Score extends JFrame  {
 		b1.addActionListener(add);
 		JButton b2 = new JButton("Á¦°Å");
 		b2.setBounds(250, 50, 100, 50);
-		b2.addActionListener(new RemoveActionListener(table));
+		b2.addActionListener(del);
 		JButton b3 = new JButton("¼öÁ¤");
 		b3.setBounds(250, 100, 100, 50);
+		b3.addActionListener(up);
 
 		add(button);
 		add(button2);
@@ -88,31 +88,83 @@ public class Score extends JFrame  {
 		add(panel2);
 		setVisible(true);
 	}
-	ActionListener add = new ActionListener(){
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+
+	ActionListener add = new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+
+			contentSet();
+			int result = A.insertScore(T);
+			if (result == 1) {
+				jTableRefresh();
+				contentClear();
+			}
+		}
+
+	};
+	ActionListener del = new ActionListener() {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			contentSet();
+			int result = A.deleteScore(T);
+			if (result == 1) {
+				jTableRefresh();
+				contentClear();
+			}
+		}
+
+	};
+	ActionListener up = new ActionListener() {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			contentSet();
+			int result = A.updateScore(T);
+			if (result == 1) {
+				jTableRefresh();
+				contentClear();
+			}
+		}
+
+	};
+	public void jTableRefresh() {
+		DefaultTableModel model = new DefaultTableModel(A.getScore(), col) {
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
+		table.setModel(model);
+	}
+
+	public void contentSet() {
 		DTO D = new DTO();
 
 		int kor, eng, mat, tot, ave;
 		String name = tname.getText();
-		
-		kor=Integer.parseInt(tkor.getText());
-		eng=Integer.parseInt(teng.getText());
-		mat=Integer.parseInt(tmat.getText());
-		tot=kor+eng+mat;
-		ave=tot/3;
-			
-		D.setName(name);		
+
+		kor = Integer.parseInt(tkor.getText());
+		eng = Integer.parseInt(teng.getText());
+		mat = Integer.parseInt(tmat.getText());
+		tot = kor + eng + mat;
+		ave = tot / 3;
+
+		D.setName(name);
 		D.setKor(kor);
 		D.setEng(eng);
 		D.setMat(mat);
 		D.setTot(tot);
 		D.setAve(ave);
-		
-		
 
-		}
-	};
-	
-}	
+	}
+
+	public void contentClear(){
+		tname.setText("");
+		tkor.setText("");
+		teng.setText("");
+		tmat.setText("");
+	}
+
+}
