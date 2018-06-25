@@ -15,7 +15,7 @@ public class GuiMultiChat_TcpClient{
 	static DataOutputStream out;
 	
 	public static void main(String args[]) {
-		nick = JOptionPane.showInputDialog("당신의 대화명은?");
+		nick = JOptionPane.showInputDialog("당신의 이름");
 		FrClient f = new FrClient(nick);
 		Socket socket;
 		try {
@@ -29,10 +29,7 @@ public class GuiMultiChat_TcpClient{
 			sender.start();
 		}catch(ConnectException e) {
 			e.printStackTrace();
-			System.out.println("접속에러");
-		}catch(Exception e) {
-			System.out.println("에러는 에러");
-		}
+		}catch(Exception e) {}
 	}
 	
 	static class ClientSender extends Thread{
@@ -44,9 +41,7 @@ public class GuiMultiChat_TcpClient{
 			try {
 				out = new DataOutputStream(socket.getOutputStream());
 				this.name = name;
-			}catch(Exception e) {
-				System.out.println("클라이언트 생성자 중 에러");
-			}
+			}catch(Exception e) {}
 		}
 		public void run() {
 			Scanner scanner = new Scanner(System.in);
@@ -57,9 +52,7 @@ public class GuiMultiChat_TcpClient{
 				while(out!=null){
 					out.writeUTF("["+name+"]"+scanner.nextLine());
 				}
-			}catch(IOException e) {
-				System.out.println("클라이언트 센더 실행중 io 에러");
-			}
+			}catch(IOException e) {}
 		}
 	}
 	
@@ -72,9 +65,7 @@ public class GuiMultiChat_TcpClient{
 			
 			try {
 				in = new DataInputStream(socket.getInputStream());
-			}catch(IOException e) {
-				System.out.println("클라이언트 리시버 실행중 입출력에러");
-			}
+			}catch(IOException e) {}
 		}
 		public void run() {
 			while(in!=null) {
@@ -82,9 +73,7 @@ public class GuiMultiChat_TcpClient{
 					String s = in.readUTF();
 					System.out.println(s);
 					ta.append(s+"\n");
-				}catch(IOException e) {
-					System.out.println("클라이어트 리시버 메소드 실행중 입출력에러");
-				}
+				}catch(IOException e) {}
 			}
 		}
 	}
@@ -124,11 +113,9 @@ public class GuiMultiChat_TcpClient{
 			// TODO Auto-generated method stub
 			if(e.getSource()==tf) {
 				try {
-					out.writeUTF("["+nick+"]"+tf.getText());
+					out.writeUTF(nick+":"+tf.getText());
 					tf.setText("");
-				} catch(IOException e1) {
-					System.out.println("gui 상에서 메시지 보내는거 에러");
-				}
+				} catch(IOException e1) {}
 			}
 		}
 	}
