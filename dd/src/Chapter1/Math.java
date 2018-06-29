@@ -1,4 +1,4 @@
-package dd;
+package Chapter1;
 
 public class Math {
 	int add(int x, int y){
