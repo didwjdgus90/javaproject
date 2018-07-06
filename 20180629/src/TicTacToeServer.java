@@ -9,15 +9,15 @@ public class TicTacToeServer {
 
 	public static void main(String[] args) throws Exception {
 
-		ServerSocket ss = new ServerSocket(9001);
+		ServerSocket ss = new ServerSocket(9014);
 		System.out.println("Tic Tac Toe 서버가 시작 되었습니다.");
 
 		try {
 			while (true) {
 				Game game = new Game();
 
-				Player1 player1 = new Player1(game, ss.accept(), 'O');
-				Player1 player2 = new Player1(game, ss.accept(), 'X');
+				Player1 player1 = new Player1(game, ss.accept(), 'X');
+				Player1 player2 = new Player1(game, ss.accept(), 'O');
 
 				player1.setOther(player2);
 				player2.setOther(player1);
@@ -47,9 +47,8 @@ class Game {
 
 	public void printBoard() {
 		for (int k = 0; k < 5; k++) {
-			System.out.println(" " + boards[k][0] + "│ " + boards[k][1] + "│ " + boards[k][2] + boards[k][3] + "│ "
-					+ boards[k][4]);
-			if (k != 2)
+			System.out.println(" " + boards[k][0] + " │ " + boards[k][1] + " │ " + boards[k][2] + " │ " + boards[k][3] + " │ "+ boards[k][4]);
+			if (k != 4)
 				System.out.println("---│---│---│---│---");
 		}
 	}
@@ -86,7 +85,7 @@ class Player1 extends Thread {
 		try {
 			output.println("PRINT 모든 경기자가 연결되었습니다. ");
 
-			if (playerMark == 'X') {
+			if (playerMark == 'O') {
 				output.println("PRINT 당신 차례입니다.");
 
 			}
@@ -103,9 +102,10 @@ class Player1 extends Thread {
 					other.output.println("OTHER " + i + " " + j);
 					output.println("PRINT 기다리세요!");
 					other.output.println("PRINT 당신 차례입니다.");
+				} else if(game.getBoard(i, j)){
+					
 				} else if (command.startsWith("QUIT")) {
 					return;
-
 				}
 			}
 		} catch (IOException e) {

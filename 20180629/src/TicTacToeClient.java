@@ -25,7 +25,7 @@ public class TicTacToeClient extends Thread {
 
 	public TicTacToeClient() throws UnknownHostException, IOException {
 
-		socket = new Socket("localhost", 9001);
+		socket = new Socket("localhost", 9014);
 
 		input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 		output = new PrintWriter(socket.getOutputStream(), true);
